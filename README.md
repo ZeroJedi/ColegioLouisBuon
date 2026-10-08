@@ -1,6 +1,6 @@
 # Colegio Louis Buon Langlais - Sitio Web Oficial
 
-Sitio web institucional de alto rendimiento, responsivo y optimizado para SEO desarrollado con **Next.js**, **TypeScript** y **Vanilla CSS**. Diseñado bajo estándares de Clean Architecture y preparado para despliegue automático en **Hostinger** mediante exportación estática.
+Sitio web institucional de alto rendimiento, responsivo y optimizado para SEO desarrollado con **Next.js**, **TypeScript** y **Vanilla CSS**. Diseñado bajo estándares de Clean Architecture y preparado para despliegue automático en **Hostinger** mediante exportación estática (`output: 'export'`).
 
 ---
 
@@ -9,16 +9,15 @@ Sitio web institucional de alto rendimiento, responsivo y optimizado para SEO de
 ```text
 frontend/
 ├── public/                               # Archivos estáticos servidos directamente
-│   ├── ArchivosUsuario/
-│   │   ├── Galeria/                      # 📷 Fotografías del carrusel de instalaciones
-│   │   │   ├── 01.webp
-│   │   │   ├── 02.webp
-│   │   │   └── 03.webp
-│   │   ├── LOGOBuonOFCTRASLUCIDO.png     # 🏫 Logotipo oficial transparente del colegio
-│   │   └── MISION VISION VALORES...docx  # 📄 Documento de referencia institucional
+│   ├── recursos/                         # 📂 Recursos multimedia del colegio
+│   │   └── galeria/                      # 📷 Fotografías del carrusel de instalaciones (800x600px)
+│   │       ├── 01.webp
+│   │       ├── 02.webp
+│   │       └── 03.webp
 │   │
-│   ├── fondo-pc.webp                     # 🖥️ Fondo de pantalla para Computadoras (PC)
-│   ├── fondo-movil.webp                  # 📱 Fondo de pantalla para Celulares / Móviles
+│   ├── LOGOBuonOFCTRASLUCIDO.png         # 🏫 Logotipo oficial transparente del colegio
+│   ├── fondo-pc.webp                     # 🖥️ Fondo de pantalla para Computadoras (1920x1080px)
+│   ├── fondo-movil.webp                  # 📱 Fondo de pantalla para Celulares (1080x1920px)
 │   │
 │   ├── favicon.ico                       # Ícono principal de pestaña del navegador
 │   ├── favicon-16x16.png                 # Ícono pequeño para navegadores
@@ -52,7 +51,7 @@ frontend/
 │       ├── CursorEffect.tsx              # Estela interactiva del cursor del ratón
 │       ├── Footer.tsx                    # Pie de página (datos, enlaces, mapa embebido)
 │       ├── Gallery.tsx                   # Lector automático de fotos para la galería
-│       ├── GalleryCarousel.tsx           # Carrusel interactivo y visor ampliado (Lightbox)
+│       ├── GalleryCarousel.tsx           # Carrusel interactivo y visor ampliado (Lightbox 4:3)
 │       ├── Header.tsx                    # Barra de navegación superior con menú desplegable
 │       └── ThemeProvider.tsx             # Manejador de Modo Claro / Modo Oscuro
 │
@@ -64,55 +63,56 @@ frontend/
 
 ---
 
-## 🖼️ 2. ¿Cómo Cambiar el Fondo de Pantalla (PC y Celular)?
+## 📐 2. Dimensiones y Guía de Fondos de Pantalla (PC y Celular)
 
-La cabecera principal (**Hero**) cuenta con detección responsiva automática mediante CSS para cargar una imagen horizontal optimizada para computadoras y una imagen vertical optimizada para teléfonos móviles.
+La cabecera principal (**Hero**) cuenta con detección responsiva automática mediante CSS para cargar la imagen horizontal en computadoras y la imagen vertical en teléfonos móviles.
 
-### Archivos de Imagen a Reemplazar
-Debes colocar tus archivos dentro de la carpeta `frontend/public/`:
-* **Modo PC / Laptop:** Guarda tu imagen con el nombre exacto:
-  `frontend/public/fondo-pc.webp` *(Resolución recomendada: 1920x1080 o superior)*
-* **Modo Celular / Móvil:** Guarda tu imagen con el nombre exacto:
-  `frontend/public/fondo-movil.webp` *(Resolución recomendada: 1080x1920 o formato vertical)*
+### Dimensiones Oficiales Requeridas:
 
-> **Nota:** Puedes usar formatos `.webp`, `.jpg` o `.png`. Si usas otra extensión (por ejemplo `.jpg`), debes actualizar la ruta en el archivo de estilos:
-> * Archivo: `frontend/src/app/globals.css` (Líneas ~197-206)
+| Dispositivo | Archivo en `frontend/public/` | Dimensiones Recomendadas | Proporción | Orientación |
+| :--- | :--- | :--- | :--- | :--- |
+| **PC / Laptop / Escritorio** | `fondo-pc.webp` | **1920 × 1080 px** | 16:9 | Horizontal (Panorámica) |
+| **Celular / Móvil / Tablet** | `fondo-movil.webp` | **1080 × 1920 px** | 9:16 | Vertical (Retrato) |
+
+> **Formatos recomendados:** `.webp` (máxima compresión y velocidad de carga), `.jpg` o `.png`.
+> Si se cambia de formato (por ejemplo a `.jpg`), solo actualiza la extensión en `frontend/src/app/globals.css` (líneas ~197-206):
 > ```css
 > @media (min-width: 768px) {
 >   .hero-bg {
->     background-image: url('/fondo-pc.jpg'); /* Tu imagen para PC */
+>     background-image: url('/fondo-pc.jpg');
 >   }
 > }
 > @media (max-width: 767px) {
 >   .hero-bg {
->     background-image: url('/fondo-movil.jpg'); /* Tu imagen para Celular */
+>     background-image: url('/fondo-movil.jpg');
 >   }
 > }
 > ```
 
 ---
 
-## 📸 3. ¿Cómo Actualizar el Resto de Imágenes?
+## 🖼️ 3. Estandarización y Gestión de Imágenes
 
-### A. Logotipo Oficial del Colegio
-* **Ubicación:** `frontend/public/ArchivosUsuario/LOGOBuonOFCTRASLUCIDO.png`
-* **Uso:** Se muestra en la barra de navegación superior ([Header.tsx](src/components/Header.tsx)) y en el pie de página ([Footer.tsx](src/components/Footer.tsx)).
-* **Recomendación:** Mantener formato PNG con fondo transparente para que se adapte perfectamente tanto al Modo Claro como al Modo Oscuro.
-
-### B. Galería de Fotos de Instalaciones
-* **Carpeta:** `frontend/public/ArchivosUsuario/Galeria/`
-* **Cómo funciona:** El componente [Gallery.tsx](src/components/Gallery.tsx) lee **automáticamente** todos los archivos que estén dentro de esta carpeta al compilar el proyecto. No necesitas tocar código para añadir o quitar fotos.
-* **Formatos soportados:** `.webp`, `.png`, `.jpg`, `.jpeg`.
+### A. Galería de Instalaciones (Estandarizada a 800 × 600 px)
+* **Carpeta:** `frontend/public/recursos/galeria/`
+* **Dimensión estándar oficial:** **800 × 600 px** *(Proporción 4:3)*.
+* **Por qué 800x600 px:** Permite que las fotografías escolares (aulas, laboratorios, patios, talleres) se encuadren de manera impecable y consistente tanto en pantallas de computadora como en celulares, evitando recortes desproporcionados.
+* **Carga 100% Automática:** El componente `Gallery.tsx` detecta y carga al instante cualquier archivo `.webp`, `.png`, `.jpg` o `.jpeg` que agregues en esta carpeta al compilar.
 * **Cómo actualizar:**
-  1. Si deseas cambiar las fotos existentes, reemplaza `01.webp`, `02.webp`, `03.webp`.
-  2. Si deseas agregar más fotos, simplemente añade `04.webp`, `05.webp`, `06.webp`, etc. El carrusel las ordenará alfabéticamente y creará los controles para recorrerlas y ampliarlas a pantalla completa.
+  * Reemplaza las fotos base (`01.webp`, `02.webp`, `03.webp`).
+  * O añade nuevas fotos con nombres secuenciales (`04.webp`, `05.webp`, etc.). El visor interactivo y el carrusel las ordenará automáticamente.
 
-### C. Íconos del Sitio (Favicons y PWA)
-Están ubicados en la carpeta raíz `frontend/public/`:
-* `favicon.ico`: Ícono estándar para pestañas en navegadores de escritorio.
-* `favicon-16x16.png`, `favicon-32x32.png`, `favicon-48x48.png`: Variantes en diferentes densidades de píxeles.
-* `apple-touch-icon.png`: Ícono que aparece cuando un usuario agrega el sitio a la pantalla de inicio en un iPhone o iPad.
-* `android-chrome-192x192.png` y `android-chrome-512x512.png`: Íconos de alta resolución para dispositivos Android.
+### B. Logotipo Oficial del Colegio
+* **Ubicación:** `frontend/public/LOGOBuonOFCTRASLUCIDO.png`
+* **Uso:** Barra superior de navegación ([Header.tsx](src/components/Header.tsx)) y pie de página ([Footer.tsx](src/components/Footer.tsx)).
+* **Recomendación:** PNG con fondo transparente (transparencia alfa) para adaptarse automáticamente tanto al tema claro como al tema oscuro.
+
+### C. Íconos del Sitio y Favicons (PWA)
+Ubicados en la raíz de `frontend/public/`:
+* `favicon.ico`: Ícono para navegadores de escritorio.
+* `favicon-16x16.png`, `favicon-32x32.png`, `favicon-48x48.png`: Íconos de pestaña para navegadores modernos.
+* `apple-touch-icon.png`: Ícono para pantalla de inicio en iPhone y iPad.
+* `android-chrome-192x192.png` y `android-chrome-512x512.png`: Íconos para dispositivos Android.
 
 ---
 
@@ -124,7 +124,7 @@ Todos los textos están organizados por página y componente de forma modular:
 | :--- | :--- | :--- |
 | **Inicio / Portada** | `src/app/page.tsx` | Título principal, eslogan institucional, botón de llamado a la acción ("Inscríbete Ahora"), bloque de "Bienvenido a la Excelencia" y título de la galería. |
 | **Quiénes Somos** | `src/app/quienes-somos/page.tsx` | Reseña histórica de la fundación (1993), trayectoria, propuesta educativa y accesos a Misión y Filosofía. |
-| **Misión y Visión** | `src/app/mision-y-vision/page.tsx` | Declaración de Misión, Visión a futuro y el desglose de los 7 valores institucionales (Respeto, Honestidad, Responsabilidad, etc.). |
+| **Misión y Visión** | `src/app/mision-y-vision/page.tsx` | Declaración de Misión, Visión de futuro y el desglose de los 7 valores institucionales (Respeto, Honestidad, Responsabilidad, etc.). |
 | **Filosofía** | `src/app/filosofia/page.tsx` | Pilares pedagógicos del modelo humanista, enseñanza trilingüe y enfoque integral. |
 | **Contacto y Ubicación** | `src/app/contacto/page.tsx` | Teléfono, enlace directo a WhatsApp, horarios de atención, correo electrónico, dirección física y mapa interactivo. |
 | **Aviso de Privacidad** | `src/app/aviso-de-privacidad/page.tsx` | Texto legal en apego a la Ley Federal de Protección de Datos Personales en Posesión de Particulares. |

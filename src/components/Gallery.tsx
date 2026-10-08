@@ -7,14 +7,14 @@ export default function Gallery() {
   
   try {
     // Leemos el directorio en tiempo de construcción (SSG)
-    const galleryPath = path.join(process.cwd(), 'public', 'ArchivosUsuario', 'Galeria');
+    const galleryPath = path.join(process.cwd(), 'public', 'recursos', 'galeria');
     if (fs.existsSync(galleryPath)) {
       const files = fs.readdirSync(galleryPath);
       // Filtramos solo imágenes webp, png, jpg, jpeg y ordenamos alfabéticamente
       images = files
         .filter(file => /\.(webp|png|jpg|jpeg)$/i.test(file))
         .sort()
-        .map(file => `/ArchivosUsuario/Galeria/${file}`);
+        .map(file => `/recursos/galeria/${file}`);
     }
   } catch (error) {
     console.error("Error reading gallery directory:", error);

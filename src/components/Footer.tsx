@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="footer-col">
             <Link href="/" className="logo-container" style={{ marginBottom: '1.5rem', display: 'flex' }}>
               <img 
-                src="/ArchivosUsuario/LOGOBuonOFCTRASLUCIDO.png" 
+                src="/LOGOBuonOFCTRASLUCIDO.png" 
                 alt="Logo Colegio Louis Buon Langlais" 
                 style={{ width: 'auto', height: '60px' }}
               />

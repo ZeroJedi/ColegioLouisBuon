@@ -65,7 +65,7 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
-        style={{ position: 'relative', width: '100%', maxWidth: '900px', margin: '0 auto', aspectRatio: '16/9', overflow: 'hidden', borderRadius: '12px', cursor: 'zoom-in', boxShadow: '0 4px 15px rgba(0,0,0,0.2)', backgroundColor: 'var(--bg-secondary)', touchAction: 'pan-y' }}
+        style={{ position: 'relative', width: '100%', maxWidth: '800px', margin: '0 auto', aspectRatio: '4/3', overflow: 'hidden', borderRadius: '12px', cursor: 'zoom-in', boxShadow: '0 4px 15px rgba(0,0,0,0.2)', backgroundColor: 'var(--bg-secondary)', touchAction: 'pan-y' }}
       >
         {images.map((src, idx) => (
           <Image
@@ -74,7 +74,7 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
             alt={`Galería Colegio ${idx + 1}`}
             fill
             style={{ objectFit: 'cover', opacity: idx === activeIndex ? 1 : 0, transition: 'opacity 0.5s ease', pointerEvents: 'none' }}
-            sizes="(max-width: 900px) 100vw, 900px"
+            sizes="(max-width: 800px) 100vw, 800px"
             priority={idx === 0}
           />
         ))}

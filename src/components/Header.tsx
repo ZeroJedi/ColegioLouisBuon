@@ -15,7 +15,7 @@ export default function Header() {
       <div className="container header-content">
         <Link href="/" className="logo-container" onClick={() => setIsMenuOpen(false)}>
           <img 
-            src="/ArchivosUsuario/LOGOBuonOFCTRASLUCIDO.png" 
+            src="/LOGOBuonOFCTRASLUCIDO.png" 
             alt="Logo Colegio Louis Buon Langlais" 
             className="logo-img"
             style={{ width: 'auto', height: '50px' }}
