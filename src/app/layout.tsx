@@ -7,9 +7,38 @@ import CursorEffect from '@/components/CursorEffect';
 import { SCHOOL, CONTACT, MAPS } from '@/data/content';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SCHOOL.urlSitio),
   title: `${SCHOOL.nombre} | Secundaria`,
   description: SCHOOL.slogan,
   keywords: 'Colegio, Secundaria, Louis Buon Langlais, Educación, Trilingüe',
+  openGraph: {
+    title: `${SCHOOL.nombre} | Secundaria`,
+    description: SCHOOL.slogan,
+    url: SCHOOL.urlSitio,
+    siteName: SCHOOL.nombre,
+    locale: 'es_MX',
+    type: 'website',
+    images: [
+      {
+        url: SCHOOL.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `Logo ${SCHOOL.nombre}`,
+      },
+      {
+        url: SCHOOL.logoShare,
+        width: 600,
+        height: 600,
+        alt: `Logo ${SCHOOL.nombre}`,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SCHOOL.nombre} | Secundaria`,
+    description: SCHOOL.slogan,
+    images: [SCHOOL.ogImage],
+  },
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -36,6 +65,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        <link rel="image_src" href={`${SCHOOL.urlSitio}${SCHOOL.ogImage}`} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -44,6 +74,9 @@ export default function RootLayout({
               '@type': 'MiddleSchool',
               name: SCHOOL.nombre,
               description: SCHOOL.slogan,
+              url: SCHOOL.urlSitio,
+              logo: `${SCHOOL.urlSitio}${SCHOOL.logo}`,
+              image: `${SCHOOL.urlSitio}${SCHOOL.ogImage}`,
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: MAPS.streetAddress,
@@ -59,8 +92,7 @@ export default function RootLayout({
               },
               hasMap: MAPS.googleMapsUrl,
               telephone: CONTACT.telefonoTel,
-              email: CONTACT.email,
-              url: SCHOOL.urlSitio
+              email: CONTACT.email
             })
           }}
         />

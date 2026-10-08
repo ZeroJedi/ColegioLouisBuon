@@ -16,6 +16,8 @@ frontend/
 │   │       └── 03.webp
 │   │
 │   ├── LOGOBuonOFCTRASLUCIDO.png         # 🏫 Logotipo oficial transparente del colegio
+│   ├── og-image.png                      # 🌐 Imagen oficial para compartir link en redes (1200x630px: WhatsApp/FB/X)
+│   ├── logo-share.png                    # 💬 Logo con fondo blanco para mensajería y vistas cuadradas (600x600px)
 │   ├── fondo-pc.webp                     # 🖥️ Fondo de pantalla para Computadoras (1920x1080px)
 │   ├── fondo-movil.webp                  # 📱 Fondo de pantalla para Celulares (1080x1920px)
 │   │
@@ -102,6 +104,10 @@ La cabecera principal (**Hero**) cuenta con detección responsiva automática me
 * **Visualización en la Web:**
   * **Marco en la página:** El carrusel muestra las imágenes en un elegante recuadro panorámico con proporción **16:9** y ancho máximo de **900px**, adaptando el encuadre con `object-fit: cover` para una estética limpia y moderna.
   * **Visor ampliado (Lightbox):** Al dar clic o tocar cualquier foto, se abre a pantalla completa mostrando la imagen en sus dimensiones originales sin recortes.
+* **Comportamiento Interactivo y Avance Automático:**
+  * **Pase automático:** Las fotografías avanzan automáticamente cada **3.5 segundos** con una suave transición de desvanecimiento (`fade`).
+  * **Pausa por cursor:** Si el usuario coloca el cursor sobre el carrusel en computadora, el avance automático se pausa para permitir observar la imagen cómodamente.
+  * **Pantalla completa (Lightbox):** Al pulsar sobre cualquier foto, se abre el visor maximizado y **el pase automático se detiene por completo**. En este modo la navegación es estrictamente manual mediante las flechas en pantalla, gestos táctiles (*swipe*) o las teclas de flecha del teclado (`←` y `→`). Al cerrar el visor (botón `×`, clic fuera o tecla `Esc`), el carrusel reanuda su avance automático.
 * **Carga 100% Automática:** El componente `Gallery.tsx` detecta y carga al instante cualquier archivo `.webp`, `.png`, `.jpg` o `.jpeg` que agregues en esta carpeta al compilar.
 * **Cómo actualizar:**
   * Reemplaza las fotos base (`01.webp`, `02.webp`, etc.).
@@ -190,6 +196,17 @@ Estos textos son únicos de cada página y no se repiten en ningún otro lugar, 
 | **Misión y Visión** | `src/app/mision-y-vision/page.tsx` | Declaración de Misión, Visión y 7 valores institucionales |
 | **Filosofía** | `src/app/filosofia/page.tsx` | Pilares pedagógicos, modelo humanista y enseñanza trilingüe |
 | **Encabezado (Menú)** | `src/components/Header.tsx` | Nombres de los enlaces de navegación |
+
+---
+
+## 🔗 4.1 Vista Previa al Compartir el Enlace (WhatsApp, Facebook, Twitter, iMessage)
+
+Cuando envías el enlace web `https://colegiolouisbuonlanglais.edu.mx` por WhatsApp o redes sociales, las plataformas generan automáticamente una tarjeta interactiva con:
+- **Imagen del logotipo:** Toma la imagen `public/og-image.png` (1200x630px) y `public/logo-share.png` (600x600px). Ambas imágenes tienen fondo blanco sólido y pesan menos de 40 KB, cumpliendo con la restricción de WhatsApp (máximo 300 KB) para que nunca se descarte la imagen ni se vea un cuadro negro en modo oscuro.
+- **Título de la tarjeta:** Definido centralizadamente en `SCHOOL.nombre` (`src/data/content.ts`).
+- **Descripción de la tarjeta:** Definida en `SCHOOL.slogan` (`src/data/content.ts`).
+
+> **Nota técnica:** Las etiquetas Open Graph (`og:image`, `og:title`, `og:description`, `twitter:card`, `twitter:image` y `<link rel="image_src">`) están configuradas en `src/app/layout.tsx` y se generan de forma estática en el HTML para máxima compatibilidad con todos los rastreadores.
 
 ---
 

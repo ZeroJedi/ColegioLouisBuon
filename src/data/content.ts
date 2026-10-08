@@ -25,6 +25,12 @@ export const SCHOOL = {
   sloganHero: 'Nivel Secundaria con educación integral, personalizada y trilingüe para los líderes del mañana.',
   /** URL pública del sitio. Aparece en: layout.tsx (JSON-LD SEO) */
   urlSitio: 'https://colegiolouisbuonlanglais.edu.mx',
+  /** Ruta del logo oficial transparente */
+  logo: '/LOGOBuonOFCTRASLUCIDO.png',
+  /** Imagen para compartir en redes sociales (1200x630 px) */
+  ogImage: '/og-image.png',
+  /** Logo optimizado para compartir en mensajería cuadrada (600x600 px) */
+  logoShare: '/logo-share.png',
 };
 
 // ─── Datos de Contacto ────────────────────────────────────────────────────────

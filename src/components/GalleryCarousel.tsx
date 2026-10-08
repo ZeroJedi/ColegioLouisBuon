@@ -1,27 +1,65 @@
 'use client';
 
-import { useState, TouchEvent } from 'react';
+import { useState, useEffect, useCallback, TouchEvent } from 'react';
 import Image from 'next/image';
 
 interface GalleryCarouselProps {
   images: string[];
 }
 
+/** Intervalo recomendado: 3.5 segundos (3500 ms) para una visualización armónica */
+const AUTOPLAY_INTERVAL = 3500;
+
 export default function GalleryCarousel({ images }: GalleryCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const activeIndex = currentIndex;
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
+    if (images.length === 0) return;
     setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
+  }, [images.length]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
+    if (images.length === 0) return;
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
+  }, [images.length]);
+
+  // Cambio automático de fotos cada 3.5 segundos
+  // Se detiene completamente si está abierto el visor a pantalla completa o si el usuario pasa el mouse por encima
+  useEffect(() => {
+    if (images.length <= 1 || isLightboxOpen || isHovered) {
+      return;
+    }
+
+    const timer = setInterval(() => {
+      nextImage();
+    }, AUTOPLAY_INTERVAL);
+
+    return () => clearInterval(timer);
+  }, [images.length, isLightboxOpen, isHovered, nextImage]);
+
+  // Navegación manual con teclado (flechas y escape) cuando está en pantalla completa
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        nextImage();
+      } else if (e.key === 'ArrowLeft') {
+        prevImage();
+      } else if (e.key === 'Escape') {
+        setIsLightboxOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen, nextImage, prevImage]);
 
   const openLightbox = () => {
     // Evitar que abra si se hizo swipe en pantalla táctil
@@ -61,6 +99,8 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
       <div 
         className="carousel-container" 
         onClick={openLightbox}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
