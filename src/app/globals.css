@@ -105,15 +105,44 @@ ul {
 
 .nav-link {
   font-weight: 500;
-  transition: color 0.2s ease;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav-link:hover {
-  color: var(--color-blue);
+  color: var(--color-red);
+  background-color: rgba(229, 39, 32, 0.08);
 }
 
-[data-theme="dark"] .nav-link:hover {
-  color: var(--color-red);
+/* Resplandor de fondo rojo armónico institucional cuando está elegido / posicionado */
+.nav-link.active,
+.nav-link-active {
+  color: var(--color-red) !important;
+  background: rgba(229, 39, 32, 0.12);
+  border: 1px solid rgba(229, 39, 32, 0.45);
+  box-shadow: 0 0 16px rgba(229, 39, 32, 0.45), 
+              inset 0 0 8px rgba(229, 39, 32, 0.15);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .nav-link.active,
+[data-theme="dark"] .nav-link-active {
+  color: #ff5e59 !important;
+  background: rgba(229, 39, 32, 0.22);
+  border: 1px solid rgba(229, 39, 32, 0.65);
+  box-shadow: 0 0 20px rgba(229, 39, 32, 0.6), 
+              inset 0 0 10px rgba(229, 39, 32, 0.25);
+}
+
+.dropdown-content a.nav-link-active {
+  color: var(--color-red) !important;
+  background-color: rgba(229, 39, 32, 0.12);
+  font-weight: 600;
+  border-left: 3px solid var(--color-red);
 }
 
 .nav-dropdown {
@@ -188,7 +217,7 @@ ul {
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   background-repeat: no-repeat;
   z-index: -2;
 }
@@ -196,12 +225,14 @@ ul {
 /* Responsive Background Logic via CSS */
 @media (min-width: 768px) {
   .hero-bg {
-    background-image: url('/fondo-pc.webp'); /* Assuming image exists */
+    background-image: url('/fondo-pc.webp');
+    background-position: top center;
   }
 }
 @media (max-width: 767px) {
   .hero-bg {
-    background-image: url('/fondo-movil.webp'); /* Assuming image exists */
+    background-image: url('/fondo-movil.webp');
+    background-position: top center;
   }
 }
 
@@ -510,4 +541,44 @@ button[data-nextjs-dev-tools-button] {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+/* Efecto Destello del Cursor (Colores Institucionales) */
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999999;
+  overflow: hidden;
+}
+
+.cursor-star {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.35);
+  animation: cursorSparkle 0.75s ease-out forwards;
+}
+
+@keyframes cursorSparkle {
+  0% {
+    transform: translate(-50%, -50%) scale(0.35) rotate(0deg);
+    opacity: 1;
+  }
+  35% {
+    transform: translate(-50%, -50%) scale(1.35) rotate(45deg);
+    opacity: 0.95;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(0.8) rotate(70deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.15) rotate(90deg);
+    opacity: 0;
+  }
+}
+
 

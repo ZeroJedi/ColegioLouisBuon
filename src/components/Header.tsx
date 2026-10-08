@@ -2,13 +2,17 @@
 
 import Link from 'next/link';
 import { useTheme } from './ThemeProvider';
-import Image from 'next/image';
-
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isHomeActive = pathname === '/';
+  const isAboutActive = pathname === '/quienes-somos' || pathname === '/mision-y-vision' || pathname === '/filosofia';
+  const isContactActive = pathname === '/contacto';
 
   return (
     <header className="header">
@@ -24,18 +28,59 @@ export default function Header() {
         </Link>
 
         <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
-          <Link href="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Inicio</Link>
+          <Link 
+            href="/" 
+            className={`nav-link ${isHomeActive ? 'nav-link-active' : ''}`} 
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Inicio
+          </Link>
+
           <div className="nav-dropdown">
-            <span className="nav-link" style={{ cursor: 'pointer' }}>Quiénes Somos ▾</span>
+            <span 
+              className={`nav-link ${isAboutActive ? 'nav-link-active' : ''}`} 
+              style={{ cursor: 'pointer' }}
+            >
+              Quiénes Somos ▾
+            </span>
             <div className="dropdown-content">
-              <Link href="/quienes-somos" onClick={() => setIsMenuOpen(false)}>Historia</Link>
-              <Link href="/mision-y-vision" onClick={() => setIsMenuOpen(false)}>Misión y Visión</Link>
-              <Link href="/filosofia" onClick={() => setIsMenuOpen(false)}>Filosofía</Link>
+              <Link 
+                href="/quienes-somos" 
+                className={pathname === '/quienes-somos' ? 'nav-link-active' : ''} 
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Historia
+              </Link>
+              <Link 
+                href="/mision-y-vision" 
+                className={pathname === '/mision-y-vision' ? 'nav-link-active' : ''} 
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Misión y Visión
+              </Link>
+              <Link 
+                href="/filosofia" 
+                className={pathname === '/filosofia' ? 'nav-link-active' : ''} 
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Filosofía
+              </Link>
             </div>
           </div>
-          <Link href="/contacto" className="nav-link" onClick={() => setIsMenuOpen(false)}>Contacto</Link>
+
+          <Link 
+            href="/contacto" 
+            className={`nav-link ${isContactActive ? 'nav-link-active' : ''}`} 
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Contacto
+          </Link>
           
-          <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
+          <button 
+            onClick={() => { toggleTheme(); setIsMenuOpen(false); }} 
+            className="theme-toggle" 
+            aria-label="Toggle Theme"
+          >
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
         </nav>

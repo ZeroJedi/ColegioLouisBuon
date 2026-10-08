@@ -47,13 +47,16 @@ frontend/
 │   │   ├── layout.tsx                    # 📐 Maquetación global (SEO, Navbar, Footer, FABs)
 │   │   └── page.tsx                      # 🏠 Página de Inicio (Hero, Bienvenida, Galería)
 │   │
-│   └── components/                       # Componentes reutilizables de interfaz
-│       ├── CursorEffect.tsx              # Estela interactiva del cursor del ratón
-│       ├── Footer.tsx                    # Pie de página (datos, enlaces, mapa embebido)
-│       ├── Gallery.tsx                   # Lector automático de fotos para la galería
-│       ├── GalleryCarousel.tsx           # Carrusel interactivo y visor ampliado (Lightbox 4:3)
-│       ├── Header.tsx                    # Barra de navegación superior con menú desplegable
-│       └── ThemeProvider.tsx             # Manejador de Modo Claro / Modo Oscuro
+│   ├── components/                       # Componentes reutilizables de interfaz
+│   │   ├── CursorEffect.tsx              # Estela interactiva del cursor del ratón
+│   │   ├── Footer.tsx                    # Pie de página (datos, enlaces, mapa embebido)
+│   │   ├── Gallery.tsx                   # Lector automático de fotos para la galería
+│   │   ├── GalleryCarousel.tsx           # Carrusel interactivo y visor ampliado (Lightbox 4:3)
+│   │   ├── Header.tsx                    # Barra de navegación superior con menú desplegable
+│   │   └── ThemeProvider.tsx             # Manejador de Modo Claro / Modo Oscuro
+│   │
+│   └── data/
+│       └── content.ts                    # 📝 ARCHIVO CENTRAL DE TEXTOS — edita aquí todos los datos del colegio
 │
 ├── next.config.ts                        # Configuración de compilación y exportación SSG
 ├── package.json                          # Dependencias y scripts de Node.js
@@ -93,14 +96,16 @@ La cabecera principal (**Hero**) cuenta con detección responsiva automática me
 
 ## 🖼️ 3. Estandarización y Gestión de Imágenes
 
-### A. Galería de Instalaciones (Estandarizada a 800 × 600 px)
+### A. Galería de Instalaciones (Resolución Estandarizada a 800 × 600 px)
 * **Carpeta:** `frontend/public/recursos/galeria/`
-* **Dimensión estándar oficial:** **800 × 600 px** *(Proporción 4:3)*.
-* **Por qué 800x600 px:** Permite que las fotografías escolares (aulas, laboratorios, patios, talleres) se encuadren de manera impecable y consistente tanto en pantallas de computadora como en celulares, evitando recortes desproporcionados.
+* **Dimensión estándar de las imágenes:** **800 × 600 px** *(Proporción 4:3)*.
+* **Visualización en la Web:**
+  * **Marco en la página:** El carrusel muestra las imágenes en un elegante recuadro panorámico con proporción **16:9** y ancho máximo de **900px**, adaptando el encuadre con `object-fit: cover` para una estética limpia y moderna.
+  * **Visor ampliado (Lightbox):** Al dar clic o tocar cualquier foto, se abre a pantalla completa mostrando la imagen en sus dimensiones originales sin recortes.
 * **Carga 100% Automática:** El componente `Gallery.tsx` detecta y carga al instante cualquier archivo `.webp`, `.png`, `.jpg` o `.jpeg` que agregues en esta carpeta al compilar.
 * **Cómo actualizar:**
-  * Reemplaza las fotos base (`01.webp`, `02.webp`, `03.webp`).
-  * O añade nuevas fotos con nombres secuenciales (`04.webp`, `05.webp`, etc.). El visor interactivo y el carrusel las ordenará automáticamente.
+  * Reemplaza las fotos base (`01.webp`, `02.webp`, etc.).
+  * O añade nuevas fotos con nombres secuenciales (`04.webp`, `05.webp`, `06.webp`, etc.). El carrusel detectará todas las fotos, mostrará el contador correspondiente (ej. *1 de 6*) y permitirá recorrerlas mediante flechas, deslizamiento táctil (swipe) o seleccionando directamente los puntos inferiores.
 
 ### B. Logotipo Oficial del Colegio
 * **Ubicación:** `frontend/public/LOGOBuonOFCTRASLUCIDO.png`
@@ -116,21 +121,75 @@ Ubicados en la raíz de `frontend/public/`:
 
 ---
 
-## ✍️ 4. ¿Dónde se Encuentran los Textos para Modificarlos?
+## ✍️ 4. Archivo Central de Textos (`content.ts`) — La forma más fácil de editar
 
-Todos los textos están organizados por página y componente de forma modular:
+> **¡La forma recomendada de modificar textos!** El archivo `src/data/content.ts` centraliza todos los datos reutilizables del colegio. Al cambiar un valor aquí, se actualiza **automáticamente en todas las páginas** donde aparece.
+
+### Cómo usarlo:
+
+Abre el archivo `src/data/content.ts` y edita el valor que necesites. Los datos están agrupados en cuatro secciones:
+
+#### Grupo `SCHOOL` — Identidad del Colegio
+
+| Variable | Ejemplo de Valor | Dónde aparece en el sitio |
+| :--- | :--- | :--- |
+| `SCHOOL.nombre` | `'Colegio Louis Buon Langlais'` | Header, Footer, layout.tsx (SEO), aviso de privacidad |
+| `SCHOOL.cct` | `'CCT: 09PES0883-D'` | Footer (columna izquierda, debajo del logo) |
+| `SCHOOL.slogan` | `'Educación integral...'` | Footer, SEO de layout.tsx |
+| `SCHOOL.sloganHero` | `'Nivel Secundaria con...'` | **Portada → texto debajo del título principal** |
+| `SCHOOL.urlSitio` | `'https://colegiolouisbuon...'` | Datos estructurados SEO (JSON-LD) |
+
+#### Grupo `CONTACT` — Datos de Contacto
+
+| Variable | Ejemplo de Valor | Dónde aparece en el sitio |
+| :--- | :--- | :--- |
+| `CONTACT.telefonoMostrar` | `'55 3332 3221'` | Footer, página Contacto, botón flotante |
+| `CONTACT.telefonoTel` | `'+525533323221'` | Enlace `tel:` del botón flotante y botones de contacto |
+| `CONTACT.whatsappNumero` | `'5215533323221'` | Botón flotante WhatsApp, página Contacto, aviso de privacidad |
+| `CONTACT.email` | `'colegiobuon@gmail.com'` | Footer, página Contacto, JSON-LD SEO |
+| `CONTACT.horarioDias` | `'Lunes a Viernes'` | Footer (columna Contacto), página Contacto |
+| `CONTACT.horarioHoras` | `'7:00 a.m. – 3:00 p.m.'` | Footer (columna Contacto), página Contacto |
+| `CONTACT.horarioFindeSemana` | `'Sábado y Domingo: Cerrado.'` | Footer (columna Contacto), página Contacto |
+| `CONTACT.facebook` | `'https://www.facebook.com/...'` | Botón flotante Facebook |
+
+#### Grupo `MAPS` — Ubicación y Mapa
+
+| Variable | Ejemplo de Valor | Dónde aparece en el sitio |
+| :--- | :--- | :--- |
+| `MAPS.streetAddress` | `'C. 11 87, Col. Olivar del Conde...'` | JSON-LD SEO en layout.tsx |
+| `MAPS.alcaldia` | `'Álvaro Obregón'` | JSON-LD SEO en layout.tsx |
+| `MAPS.ciudad` | `'Ciudad de México'` | JSON-LD SEO en layout.tsx |
+| `MAPS.cp` | `'01400'` | JSON-LD SEO en layout.tsx |
+| `MAPS.direccionCompleta` | `'C. 11 87, Col. Olivar...'` | Página Contacto, aviso de privacidad |
+| `MAPS.direccionLinea1` | `'C. 11 87, Col. Olivar...'` | Footer (columna Ubicación, primera línea) |
+| `MAPS.direccionLinea2` | `'Álvaro Obregón, 01400...'` | Footer (columna Ubicación, segunda línea) |
+| `MAPS.googleMapsUrl` | `'https://maps.app.goo.gl/...'` | Enlace en Footer, botón en página Contacto |
+| `MAPS.googleMapsEmbed` | `'https://www.google.com/maps/embed?...'` | Iframe del mapa en Footer y página Contacto |
+| `MAPS.latitud` | `19.3738459` | Coordenadas GPS en JSON-LD SEO |
+| `MAPS.longitud` | `-99.2080122` | Coordenadas GPS en JSON-LD SEO |
+
+#### Grupo `HOME` — Textos de la Página de Inicio
+
+| Variable | Ejemplo de Valor | Dónde aparece en el sitio |
+| :--- | :--- | :--- |
+| `HOME.heroTitulo` | `'Colegio Louis Buon Langlais'` | **Portada → título grande del Hero (H1)** |
+| `HOME.heroCta` | `'Inscríbete Ahora'` | **Portada → botón principal del Hero** |
+| `HOME.bienvenidaTitulo` | `'Bienvenido a la Excelencia'` | **Portada → título de la segunda sección** |
+| `HOME.bienvenidaTexto` | `'Nuestra institución se ha distinguido...'` | **Portada → párrafo informativo de bienvenida** |
+| `HOME.bienvenidaCta` | `'Conoce nuestra historia'` | **Portada → botón de la sección de bienvenida** |
+| `HOME.galeriaTitulo` | `'Nuestras Instalaciones'` | **Portada → título de la sección de galería** |
+| `HOME.galeriaSubtitulo` | `'Descubre los espacios...'` | **Portada → subtítulo de la galería** |
+
+### Textos que NO están en `content.ts` (solo en su propia página)
+
+Estos textos son únicos de cada página y no se repiten en ningún otro lugar, por lo que se editan directamente en su archivo:
 
 | Sección / Página | Archivo a Modificar | Contenido que incluye |
 | :--- | :--- | :--- |
-| **Inicio / Portada** | `src/app/page.tsx` | Título principal, eslogan institucional, botón de llamado a la acción ("Inscríbete Ahora"), bloque de "Bienvenido a la Excelencia" y título de la galería. |
-| **Quiénes Somos** | `src/app/quienes-somos/page.tsx` | Reseña histórica de la fundación (1993), trayectoria, propuesta educativa y accesos a Misión y Filosofía. |
-| **Misión y Visión** | `src/app/mision-y-vision/page.tsx` | Declaración de Misión, Visión de futuro y el desglose de los 7 valores institucionales (Respeto, Honestidad, Responsabilidad, etc.). |
-| **Filosofía** | `src/app/filosofia/page.tsx` | Pilares pedagógicos del modelo humanista, enseñanza trilingüe y enfoque integral. |
-| **Contacto y Ubicación** | `src/app/contacto/page.tsx` | Teléfono, enlace directo a WhatsApp, horarios de atención, correo electrónico, dirección física y mapa interactivo. |
-| **Aviso de Privacidad** | `src/app/aviso-de-privacidad/page.tsx` | Texto legal en apego a la Ley Federal de Protección de Datos Personales en Posesión de Particulares. |
-| **Encabezado (Menú)** | `src/components/Header.tsx` | Nombres de los enlaces de navegación, menú desplegable y botón de modo claro/oscuro. |
-| **Pie de Página (Footer)** | `src/components/Footer.tsx` | Eslogan inferior, espacio para Clave CCT / RVOE, datos de contacto, enlaces rápidos, horarios, dirección física y mapa embebido. |
-| **Metadatos y SEO** | `src/app/layout.tsx` | Título general de la pestaña en Google, meta descripción, coordenadas satelitales (Schema.org) y botones flotantes (WhatsApp, Facebook, Teléfono). |
+| **Quiénes Somos** | `src/app/quienes-somos/page.tsx` | Reseña histórica (1993), trayectoria y propuesta educativa |
+| **Misión y Visión** | `src/app/mision-y-vision/page.tsx` | Declaración de Misión, Visión y 7 valores institucionales |
+| **Filosofía** | `src/app/filosofia/page.tsx` | Pilares pedagógicos, modelo humanista y enseñanza trilingüe |
+| **Encabezado (Menú)** | `src/components/Header.tsx` | Nombres de los enlaces de navegación |
 
 ---
 
