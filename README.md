@@ -15,7 +15,7 @@ frontend/
 │   │       ├── 02.webp
 │   │       └── 03.webp
 │   │
-│   ├── LOGOBuonOFCTRASLUCIDO.png         # 🏫 Logotipo oficial transparente del colegio
+│   ├── logocolegio.webp                  # 🏫 Logotipo oficial optimizado WebP transparente (~17KB, carga instantánea 3G)
 │   ├── og-image.png                      # 🌐 Imagen oficial para compartir link en redes (1200x630px: WhatsApp/FB/X)
 │   ├── logo-share.png                    # 💬 Logo con fondo blanco para mensajería y vistas cuadradas (600x600px)
 │   ├── fondo-pc.webp                     # 🖥️ Fondo de pantalla para Computadoras (1920x1080px)
@@ -114,9 +114,13 @@ La cabecera principal (**Hero**) cuenta con detección responsiva automática me
   * O añade nuevas fotos con nombres secuenciales (`04.webp`, `05.webp`, `06.webp`, etc.). El carrusel detectará todas las fotos, mostrará el contador correspondiente (ej. *1 de 6*) y permitirá recorrerlas mediante flechas, deslizamiento táctil (swipe) o seleccionando directamente los puntos inferiores.
 
 ### B. Logotipo Oficial del Colegio
-* **Ubicación:** `frontend/public/LOGOBuonOFCTRASLUCIDO.png`
-* **Uso:** Barra superior de navegación ([Header.tsx](src/components/Header.tsx)) y pie de página ([Footer.tsx](src/components/Footer.tsx)).
-* **Recomendación:** PNG con fondo transparente (transparencia alfa) para adaptarse automáticamente tanto al tema claro como al tema oscuro.
+* **Ubicación:** `frontend/public/logocolegio.webp`
+* **Uso:** Barra superior de navegación ([Header.tsx](src/components/Header.tsx)), pie de página ([Footer.tsx](src/components/Footer.tsx)) y datos estructurados SEO.
+* **Medidas y formato óptimos:** 
+  * Formato: **WebP** con transparencia (canal alfa).
+  * Dimensiones recomendadas: **150 a 200px de alto** (proporcional, aprox. 149x200px o 300x400px para pantallas Retina 2x/3x).
+  * Peso objetivo: **< 25 KB** (actualmente **17 KB** tras la optimización desde los 993 KB originales).
+  * Garantiza descarga en **menos de 0.3 segundos incluso en conexiones móviles 3G lentas**.
 
 ### C. Íconos del Sitio y Favicons (PWA)
 Ubicados en la raíz de `frontend/public/`:

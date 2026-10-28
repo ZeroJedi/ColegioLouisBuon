@@ -65,6 +65,9 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        <link rel="preload" href="/logocolegio.webp" as="image" type="image/webp" fetchPriority="high" />
+        <link rel="preload" href="/fondo-movil.webp" as="image" type="image/webp" media="(max-width: 767px)" fetchPriority="high" />
+        <link rel="preload" href="/fondo-pc.webp" as="image" type="image/webp" media="(min-width: 768px)" fetchPriority="high" />
         <link rel="image_src" href={`${SCHOOL.urlSitio}${SCHOOL.ogImage}`} />
         <script
           type="application/ld+json"

@@ -9,8 +9,12 @@ export default function Footer() {
           <div className="footer-col">
             <Link href="/" className="logo-container" style={{ marginBottom: '1.5rem', display: 'flex' }}>
               <img
-                src="/LOGOBuonOFCTRASLUCIDO.png"
+                src={SCHOOL.logo}
                 alt={`Logo ${SCHOOL.nombre}`}
+                width={45}
+                height={60}
+                loading="lazy"
+                decoding="async"
                 style={{ width: 'auto', height: '60px' }}
               />
             </Link>

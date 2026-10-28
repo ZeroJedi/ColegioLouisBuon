@@ -25,8 +25,8 @@ export const SCHOOL = {
   sloganHero: 'Nivel Secundaria con educación integral, personalizada y trilingüe para los líderes del mañana.',
   /** URL pública del sitio. Aparece en: layout.tsx (JSON-LD SEO) */
   urlSitio: 'https://colegiolouisbuonlanglais.edu.mx',
-  /** Ruta del logo oficial transparente */
-  logo: '/LOGOBuonOFCTRASLUCIDO.png',
+  /** Ruta del logo oficial optimizado (WebP con transparencia, 149x200px, ~17KB) */
+  logo: '/logocolegio.webp',
   /** Imagen para compartir en redes sociales (1200x630 px) */
   ogImage: '/og-image.png',
   /** Logo optimizado para compartir en mensajería cuadrada (600x600 px) */
@@ -56,7 +56,7 @@ export const CONTACT = {
 // ─── Ubicación ────────────────────────────────────────────────────────────────
 export const MAPS = {
   /** Calle y colonia. Aparece en: Footer, contacto/page.tsx, aviso-de-privacidad, layout.tsx (JSON-LD) */
-  streetAddress: 'C. 11 87, Col. Olivar del Conde, Olivar del Conde 1ra Secc',
+  streetAddress: 'Calle 11 Número 87, Col. Olivar del Conde, Olivar del Conde 1ra Secc',
   /** Delegación / Alcaldía. Aparece en: layout.tsx (JSON-LD) */
   alcaldia: 'Álvaro Obregón',
   /** Ciudad. Aparece en: layout.tsx (JSON-LD) */
@@ -64,9 +64,9 @@ export const MAPS = {
   /** Código Postal. Aparece en: layout.tsx (JSON-LD) */
   cp: '01400',
   /** Dirección completa en una línea. Aparece en: contacto/page.tsx, aviso-de-privacidad */
-  direccionCompleta: 'C. 11 87, Col. Olivar del Conde, Olivar del Conde 1ra Secc, Álvaro Obregón, 01400 Ciudad de México, CDMX',
+  direccionCompleta: 'Calle 11 Número 87, Col. Olivar del Conde, Olivar del Conde 1ra Secc, Álvaro Obregón, 01400 Ciudad de México, CDMX',
   /** Dirección en dos líneas (para el Footer). Aparece en: Footer */
-  direccionLinea1: 'Calle 11 87, Col. Olivar del Conde, Olivar del Conde 1ra Secc,',
+  direccionLinea1: 'Calle 11 Num. 87, Col. Olivar del Conde, Olivar del Conde 1ra Secc,',
   direccionLinea2: 'Álvaro Obregón, 01400 Ciudad de México, CDMX',
   /** Enlace corto de Google Maps. Aparece en: Footer, contacto/page.tsx, layout.tsx (JSON-LD) */
   googleMapsUrl: 'https://maps.app.goo.gl/hFdndL1WdZ5VWjcD7',

@@ -19,6 +19,18 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
 
   const activeIndex = currentIndex;
 
+  const [visitedIndices, setVisitedIndices] = useState<Set<number>>(new Set([0]));
+
+  useEffect(() => {
+    setVisitedIndices(prev => {
+      if (prev.has(activeIndex)) return prev;
+      const nextSet = new Set(prev);
+      nextSet.add(activeIndex);
+      nextSet.add((activeIndex + 1) % images.length);
+      return nextSet;
+    });
+  }, [activeIndex, images.length]);
+
   const nextImage = useCallback(() => {
     if (images.length === 0) return;
     setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -119,20 +131,22 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
         }}
       >
         {images.map((src, idx) => (
-          <Image
-            key={src}
-            src={src}
-            alt={`Galería Colegio ${idx + 1}`}
-            fill
-            style={{ 
-              objectFit: 'cover', 
-              opacity: idx === activeIndex ? 1 : 0, 
-              transition: 'opacity 0.5s ease', 
-              pointerEvents: 'none' 
-            }}
-            sizes="(max-width: 900px) 100vw, 900px"
-            priority={idx === 0}
-          />
+          visitedIndices.has(idx) ? (
+            <Image
+              key={src}
+              src={src}
+              alt={`Galería Colegio ${idx + 1}`}
+              fill
+              style={{ 
+                objectFit: 'cover', 
+                opacity: idx === activeIndex ? 1 : 0, 
+                transition: 'opacity 0.5s ease', 
+                pointerEvents: 'none' 
+              }}
+              sizes="(max-width: 900px) 100vw, 900px"
+              priority={idx === 0}
+            />
+          ) : null
         ))}
 
         {/* Indicador de número de foto */}

@@ -19,9 +19,13 @@ export default function Header() {
       <div className="container header-content">
         <Link href="/" className="logo-container" onClick={() => setIsMenuOpen(false)}>
           <img 
-            src="/LOGOBuonOFCTRASLUCIDO.png" 
+            src="/logocolegio.webp" 
             alt="Logo Colegio Louis Buon Langlais" 
             className="logo-img"
+            width={37}
+            height={50}
+            fetchPriority="high"
+            decoding="async"
             style={{ width: 'auto', height: '50px' }}
           />
           <span className="logo-text">Colegio Louis Buon Langlais</span>
