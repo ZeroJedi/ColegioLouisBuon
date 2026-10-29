@@ -50,7 +50,6 @@ frontend/
 │   │   └── page.tsx                      # 🏠 Página de Inicio (Hero, Bienvenida, Galería)
 │   │
 │   ├── components/                       # Componentes reutilizables de interfaz
-│   │   ├── ContactForm.tsx               # 📬 Formulario de contacto directo (WhatsApp y Correo oficial)
 │   │   ├── CursorEffect.tsx              # Estela interactiva del cursor del ratón
 │   │   ├── Distinctions.tsx              # ⭐ Sección destacada: "Lo que nos distingue" (Tarjetas UX + Contador COMIPEMS)
 │   │   ├── Footer.tsx                    # Pie de página (datos, enlaces, mapa embebido)

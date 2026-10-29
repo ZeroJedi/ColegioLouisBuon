@@ -1,93 +1,154 @@
 import type { Metadata } from 'next';
-import { CONTACT, MAPS, SCHOOL } from '@/data/content';
-import ContactForm from '@/components/ContactForm';
+import { CONTACT, MAPS, SCHOOL, CONTACT_PAGE } from '@/data/content';
 
 export const metadata: Metadata = {
-  title: `Contacto y Admisiones | ${SCHOOL.nombre}`,
-  description: `Comunícate con nosotros para solicitar informes de inscripción, visitas guiadas y horarios de atención del ${SCHOOL.nombre}.`,
+  title: `Contacto y Ubicación | ${SCHOOL.nombre}`,
+  description: `Canales de atención directa del ${SCHOOL.nombre}. Comunícate por WhatsApp, teléfono o correo electrónico oficial.`,
 };
 
 export default function Contacto() {
   return (
     <div className="container section">
-      <h1 className="section-title">Contacto y Admisiones</h1>
+      <h1 className="section-title">{CONTACT_PAGE.titulo}</h1>
 
       <div className="content-block" style={{ textAlign: 'center' }}>
-        <h2 style={{ color: 'var(--color-blue)', marginBottom: '1.25rem' }}>Estamos para atenderte</h2>
-        <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', maxWidth: '750px', margin: '0 auto 2.5rem auto' }}>
-          Para brindarte una atención personalizada, resolver dudas de inscripción o agendar un recorrido por nuestras instalaciones, utiliza cualquiera de nuestros canales oficiales.
+        <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '780px', margin: '0 auto 3rem auto', lineHeight: '1.7' }}>
+          {CONTACT_PAGE.subtitulo}
         </p>
 
-        {/* Canales Rápidos de Contacto */}
-        <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3.5rem' }}>
-          <a href={`tel:${CONTACT.telefonoTel}`} className="btn-primary" style={{ backgroundColor: 'var(--color-blue)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            📞 Llamar: {CONTACT.telefonoMostrar}
-          </a>
-          <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ backgroundColor: '#128C7E', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            💬 WhatsApp Directo
-          </a>
-        </div>
+        {/* Cuadrícula de Canales de Atención Directa (Sin Formularios) */}
+        <div className="contact-channels-grid">
+          {/* Tarjeta 1: WhatsApp Oficial */}
+          <article className="contact-channel-card contact-channel-whatsapp" tabIndex={0}>
+            <div className="contact-channel-header">
+              <div className="contact-channel-icon whatsapp-icon-box" aria-hidden="true">
+                <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                </svg>
+              </div>
+              <span className="contact-badge badge-whatsapp">Respuesta Inmediata</span>
+            </div>
+            <h2 className="contact-channel-title">WhatsApp Oficial</h2>
+            <p className="contact-channel-desc">
+              Canal preferente para solicitar informes de inscripción, costos y resolver preguntas de forma ágil.
+            </p>
+            <div className="contact-channel-action">
+              <a
+                href={CONTACT.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-channel-action btn-channel-whatsapp"
+                aria-label="Abrir conversación oficial de WhatsApp con el colegio"
+              >
+                💬 Chatear por WhatsApp
+              </a>
+            </div>
+            <span className="contact-channel-note">
+              Abre el chat con el mensaje prellenado oficial
+            </span>
+          </article>
 
-        {/* Formulario Interactivo de Solicitud de Informes */}
-        <ContactForm />
+          {/* Tarjeta 2: Atención Telefónica */}
+          <article className="contact-channel-card contact-channel-phone" tabIndex={0}>
+            <div className="contact-channel-header">
+              <div className="contact-channel-icon phone-icon-box" aria-hidden="true">
+                <svg width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                  <path fillRule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                </svg>
+              </div>
+              <span className="contact-badge badge-phone">Llamada Directa</span>
+            </div>
+            <h2 className="contact-channel-title">Teléfono Escolar</h2>
+            <p className="contact-channel-desc">
+              Comunícate directamente con la dirección escolar durante nuestro horario de oficina.
+            </p>
+            <div className="contact-channel-action">
+              <a
+                href={`tel:${CONTACT.telefonoTel}`}
+                className="btn-channel-action btn-channel-phone"
+                aria-label={`Llamar por teléfono al ${CONTACT.telefonoMostrar}`}
+              >
+                📞 {CONTACT.telefonoMostrar}
+              </a>
+            </div>
+            <span className="contact-channel-note">
+              {CONTACT.horarioDias}: {CONTACT.horarioHoras}
+            </span>
+          </article>
 
-        {/* Tarjeta de Horarios y Correo */}
-        <div style={{ textAlign: 'left', maxWidth: '600px', margin: '0 auto 3rem auto', background: 'var(--bg-primary)', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px var(--shadow-color)', border: '1px solid var(--border-color)' }}>
-          <h3 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>Horarios de Atención Escolar</h3>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem' }}><strong>{CONTACT.horarioDias}:</strong> {CONTACT.horarioHoras}</p>
-          <p style={{ color: 'var(--text-secondary)' }}><strong>{CONTACT.horarioFindeSemana}</strong></p>
-
-          <h3 style={{ marginTop: '2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Correo Institucional</h3>
-          <p style={{ color: 'var(--text-secondary)' }}>
-            <a href={`mailto:${CONTACT.email}`} style={{ color: 'var(--color-blue)', textDecoration: 'underline' }}>
+          {/* Tarjeta 3: Correo Institucional */}
+          <article className="contact-channel-card contact-channel-email" tabIndex={0}>
+            <div className="contact-channel-header">
+              <div className="contact-channel-icon email-icon-box" aria-hidden="true">
+                <svg width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                </svg>
+              </div>
+              <span className="contact-badge badge-email">Atención por Correo</span>
+            </div>
+            <h2 className="contact-channel-title">Correo Electrónico</h2>
+            <p className="contact-channel-desc">
+              Para trámites administrativos, aclaraciones o recepción de documentación oficial.
+            </p>
+            <div className="contact-channel-action">
+              <a
+                href={`mailto:${CONTACT.email}?subject=Informes%20Secundaria%20Luis%20Boun%20Langlais`}
+                className="btn-channel-action btn-channel-email"
+                aria-label={`Enviar correo a ${CONTACT.email}`}
+              >
+                ✉️ Enviar un Correo
+              </a>
+            </div>
+            <span className="contact-channel-note">
               {CONTACT.email}
+            </span>
+          </article>
+        </div>
+
+        {/* Bloque de Ubicación y Mapa Interactivo */}
+        <div className="contact-location-box">
+          <div className="contact-location-header">
+            <span className="contact-location-kicker">Visita Presencial</span>
+            <h2 className="contact-location-title">Nuestras Instalaciones</h2>
+            <p className="contact-location-address">
+              📍 <strong>{MAPS.direccionCompleta}</strong>
+            </p>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
+              Horario de atención en plantel: {CONTACT.horarioDias} de {CONTACT.horarioHoras}.
+            </p>
+            <a
+              href={MAPS.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                backgroundColor: 'var(--color-blue)',
+                padding: '0.75rem 1.6rem',
+                fontSize: '0.95rem',
+                fontWeight: 600
+              }}
+              aria-label="Abrir ubicación en Google Maps en una nueva pestaña"
+            >
+              🗺️ Abrir ubicación exacta en Google Maps ↗
             </a>
-          </p>
+          </div>
+
+          <div className="contact-map-wrapper">
+            <iframe
+              src={MAPS.googleMapsEmbed}
+              width="100%"
+              height="420"
+              style={{ border: 0, borderRadius: '14px', display: 'block' }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={`Mapa de Ubicación del ${SCHOOL.nombre}`}
+            ></iframe>
+          </div>
         </div>
-
-        <h3 style={{ color: 'var(--color-red)', marginBottom: '1rem' }}>Nuestra Ubicación</h3>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '1.05rem' }}>
-          <a
-            href={MAPS.googleMapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: 'inherit', textDecoration: 'none' }}
-            title="Abrir en Google Maps"
-          >
-            📍 {MAPS.direccionCompleta}
-          </a>
-        </p>
-
-        <div style={{ marginBottom: '1.5rem' }}>
-          <a
-            href={MAPS.googleMapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              backgroundColor: 'var(--color-blue)',
-              textDecoration: 'none',
-              padding: '0.6rem 1.2rem',
-              fontSize: '0.95rem'
-            }}
-          >
-            Abrir ubicación exacta en Google Maps ↗
-          </a>
-        </div>
-
-        <iframe
-          src={MAPS.googleMapsEmbed}
-          width="100%"
-          height="400"
-          style={{ border: 0, borderRadius: '8px', maxWidth: '800px', margin: '0 auto', display: 'block' }}
-          allowFullScreen={false}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title={`Mapa de Ubicación del ${SCHOOL.nombre}`}
-        ></iframe>
       </div>
     </div>
   );

@@ -55,10 +55,9 @@ export default function Header() {
           <div className="nav-dropdown">
             <button 
               type="button"
-              className={`nav-link ${isAboutActive ? 'nav-link-active' : ''}`} 
+              className={`nav-link nav-dropdown-btn ${isAboutActive ? 'nav-link-active' : ''}`} 
               aria-haspopup="true"
               aria-expanded="false"
-              style={{ background: 'none', border: 'none', font: 'inherit', cursor: 'pointer' }}
             >
               Quiénes Somos ▾
             </button>

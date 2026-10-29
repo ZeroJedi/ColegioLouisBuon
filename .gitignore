@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Ocultar la carpeta de agentes y registros locales de producción
+/harness/agents/

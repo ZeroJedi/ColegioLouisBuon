@@ -57,23 +57,11 @@ export const CONTACT = {
   facebook: 'https://www.facebook.com/ColegioLouisBuonLanglais/',
 };
 
-// ─── Formulario de Solicitud de Información y Contacto Directo ─────────────────
-export const CONTACT_FORM = {
-  titulo: 'Solicitud de Información y Visita Guiada',
-  subtitulo: 'Déjanos tus datos y nos comunicaremos contigo de inmediato por el canal de tu preferencia.',
-  gradosInteres: [
-    '1º de Secundaria (Nuevo Ingreso)',
-    '2º de Secundaria (Pase / Transferencia)',
-    '3º de Secundaria (Pase / Preparación COMIPEMS)',
-    'Informes Generales y Costos',
-    'Agendar Visita a las Instalaciones',
-  ],
-  placeholderNombre: 'Nombre del padre, madre o tutor',
-  placeholderTelefono: 'Número telefónico / WhatsApp (10 dígitos)',
-  placeholderMensaje: 'Escribe aquí tus dudas (fechas de inscripción, becas, programa de idiomas, etc.)...',
-  textoPrivacidad: 'Tus datos son procesados de forma directa y confidencial, sin almacenamiento en servidores externos ni cookies.',
+// ─── Textos de la Página de Contacto ──────────────────────────────────────────
+export const CONTACT_PAGE = {
+  titulo: 'Contacto y Ubicación',
+  subtitulo: 'Estamos para atenderte. Para brindarte una atención personalizada, resolver dudas de inscripción o agendar un recorrido por nuestras instalaciones, comunícate por cualquiera de nuestros canales oficiales directos.',
 };
-
 
 // ─── Ubicación ────────────────────────────────────────────────────────────────
 export const MAPS = {
