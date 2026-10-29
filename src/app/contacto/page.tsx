@@ -1,38 +1,48 @@
 import type { Metadata } from 'next';
 import { CONTACT, MAPS, SCHOOL } from '@/data/content';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-  title: `Contacto | ${SCHOOL.nombre}`,
-  description: `Comunícate con nosotros. Horarios de atención y ubicación del ${SCHOOL.nombre}.`,
+  title: `Contacto y Admisiones | ${SCHOOL.nombre}`,
+  description: `Comunícate con nosotros para solicitar informes de inscripción, visitas guiadas y horarios de atención del ${SCHOOL.nombre}.`,
 };
 
 export default function Contacto() {
   return (
     <div className="container section">
-      <h1 className="section-title">Contacto</h1>
+      <h1 className="section-title">Contacto y Admisiones</h1>
 
       <div className="content-block" style={{ textAlign: 'center' }}>
-        <h2 style={{ color: 'var(--color-blue)', marginBottom: '2rem' }}>Estamos para atenderte</h2>
-        <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-          Para brindarte una atención personalizada y directa, por favor comunícate a nuestros canales oficiales.
+        <h2 style={{ color: 'var(--color-blue)', marginBottom: '1.25rem' }}>Estamos para atenderte</h2>
+        <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', maxWidth: '750px', margin: '0 auto 2.5rem auto' }}>
+          Para brindarte una atención personalizada, resolver dudas de inscripción o agendar un recorrido por nuestras instalaciones, utiliza cualquiera de nuestros canales oficiales.
         </p>
 
-        <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3rem' }}>
+        {/* Canales Rápidos de Contacto */}
+        <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3.5rem' }}>
           <a href={`tel:${CONTACT.telefonoTel}`} className="btn-primary" style={{ backgroundColor: 'var(--color-blue)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            Llamar: {CONTACT.telefonoMostrar}
+            📞 Llamar: {CONTACT.telefonoMostrar}
           </a>
-          <a href={`https://wa.me/${CONTACT.whatsappNumero}`} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ backgroundColor: '#25D366', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            WhatsApp Oficial
+          <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ backgroundColor: '#128C7E', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            💬 WhatsApp Directo
           </a>
         </div>
 
-        <div style={{ textAlign: 'left', maxWidth: '600px', margin: '0 auto 3rem auto', background: 'var(--bg-primary)', padding: '2rem', borderRadius: '8px', boxShadow: '0 2px 4px var(--shadow-color)' }}>
-          <h3 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>Horarios de Atención</h3>
+        {/* Formulario Interactivo de Solicitud de Informes */}
+        <ContactForm />
+
+        {/* Tarjeta de Horarios y Correo */}
+        <div style={{ textAlign: 'left', maxWidth: '600px', margin: '0 auto 3rem auto', background: 'var(--bg-primary)', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px var(--shadow-color)', border: '1px solid var(--border-color)' }}>
+          <h3 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>Horarios de Atención Escolar</h3>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem' }}><strong>{CONTACT.horarioDias}:</strong> {CONTACT.horarioHoras}</p>
           <p style={{ color: 'var(--text-secondary)' }}><strong>{CONTACT.horarioFindeSemana}</strong></p>
 
-          <h3 style={{ marginTop: '2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Correo Electrónico</h3>
-          <p style={{ color: 'var(--text-secondary)' }}>{CONTACT.email}</p>
+          <h3 style={{ marginTop: '2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Correo Institucional</h3>
+          <p style={{ color: 'var(--text-secondary)' }}>
+            <a href={`mailto:${CONTACT.email}`} style={{ color: 'var(--color-blue)', textDecoration: 'underline' }}>
+              {CONTACT.email}
+            </a>
+          </p>
         </div>
 
         <h3 style={{ color: 'var(--color-red)', marginBottom: '1rem' }}>Nuestra Ubicación</h3>

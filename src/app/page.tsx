@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Gallery from '@/components/Gallery';
+import Distinctions from '@/components/Distinctions';
 import { HOME, SCHOOL } from '@/data/content';
 
 export default function Home() {
@@ -30,6 +31,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Sección Destacada: Lo que nos distingue */}
+      <Distinctions />
 
       <section className="section container" style={{ backgroundColor: 'var(--bg-secondary)', borderRadius: '12px', padding: '4rem 2rem' }}>
         <h2 className="section-title">{HOME.galeriaTitulo}</h2>

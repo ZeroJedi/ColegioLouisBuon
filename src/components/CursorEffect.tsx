@@ -4,8 +4,12 @@ import { useEffect } from 'react';
 
 export default function CursorEffect() {
   useEffect(() => {
-    // Solo activar en dispositivos con mouse/trackpad, no en pantallas táctiles
-    if (typeof window === 'undefined' || window.matchMedia('(pointer: coarse)').matches) {
+    // Solo activar en dispositivos con mouse/trackpad, no en pantallas táctiles ni si el usuario prefiere movimiento reducido
+    if (
+      typeof window === 'undefined' || 
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
       return;
     }
 

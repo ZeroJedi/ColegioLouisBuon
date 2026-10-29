@@ -22,7 +22,7 @@ export default function Footer() {
               {SCHOOL.slogan}
             </p>
             {/* Espacio semántico para CCT o RVOE */}
-            <p style={{ fontSize: '0.9rem', color: '#888' }}>
+            <p style={{ fontSize: '0.9rem', color: '#aaaaaa' }}>
               {SCHOOL.cct}
             </p>
           </div>

@@ -41,6 +41,10 @@ export const CONTACT = {
   telefonoTel: '+525533323221',
   /** Número de WhatsApp (formato internacional sin +). Aparece en: contacto/page.tsx, aviso-de-privacidad, layout.tsx (FAB) */
   whatsappNumero: '5215533323221',
+  /** Mensaje predeterminado para iniciar conversación en WhatsApp */
+  whatsappMensaje: 'Hola, deseo información sobre la Secundaria Luis Boun Langlais',
+  /** Enlace directo de WhatsApp con mensaje prellenado */
+  whatsappUrl: 'https://wa.me/5215533323221?text=Hola%2C%20deseo%20informaci%C3%B3n%20sobre%20la%20Secundaria%20Luis%20Boun%20Langlais',
   /** Correo electrónico. Aparece en: Footer, contacto/page.tsx, layout.tsx (JSON-LD) */
   email: 'colegiobuon@gmail.com',
   /** Horario de atención — días. Aparece en: Footer, contacto/page.tsx */
@@ -52,6 +56,24 @@ export const CONTACT = {
   /** URL de Facebook. Aparece en: layout.tsx (FAB) */
   facebook: 'https://www.facebook.com/ColegioLouisBuonLanglais/',
 };
+
+// ─── Formulario de Solicitud de Información y Contacto Directo ─────────────────
+export const CONTACT_FORM = {
+  titulo: 'Solicitud de Información y Visita Guiada',
+  subtitulo: 'Déjanos tus datos y nos comunicaremos contigo de inmediato por el canal de tu preferencia.',
+  gradosInteres: [
+    '1º de Secundaria (Nuevo Ingreso)',
+    '2º de Secundaria (Pase / Transferencia)',
+    '3º de Secundaria (Pase / Preparación COMIPEMS)',
+    'Informes Generales y Costos',
+    'Agendar Visita a las Instalaciones',
+  ],
+  placeholderNombre: 'Nombre del padre, madre o tutor',
+  placeholderTelefono: 'Número telefónico / WhatsApp (10 dígitos)',
+  placeholderMensaje: 'Escribe aquí tus dudas (fechas de inscripción, becas, programa de idiomas, etc.)...',
+  textoPrivacidad: 'Tus datos son procesados de forma directa y confidencial, sin almacenamiento en servidores externos ni cookies.',
+};
+
 
 // ─── Ubicación ────────────────────────────────────────────────────────────────
 export const MAPS = {
@@ -94,4 +116,46 @@ export const HOME = {
   galeriaTitulo: 'Nuestras Instalaciones',
   /** Subtítulo de la galería. Aparece en: page.tsx */
   galeriaSubtitulo: 'Descubre los espacios donde se forman los líderes del mañana.',
+};
+
+// ─── Sección: Lo Que Nos Distingue (Diferenciadores Clave) ────────────────────
+export const DISTINCTIONS = {
+  /** Título principal de la sección destacada */
+  titulo: 'Lo que nos distingue',
+  /** Subtítulo explicativo con valor pedagógico e institucional */
+  subtitulo: 'Compromiso, rigor académico y resultados comprobables que impulsan el desarrollo integral de cada estudiante.',
+  /** Etiqueta superior / Kicker */
+  kicker: 'Pilares de Excelencia',
+  /** Tarjetas de diferenciadores académicos */
+  tarjetas: [
+    {
+      id: 'matematicas',
+      titulo: 'Alto Nivel en Matemáticas',
+      badge: 'Materia Líder',
+      destacado: '#1 en Calificación y Promedio',
+      descripcion: 'Nuestra metodología fomenta el razonamiento analítico y la resolución práctica de problemas. Matemáticas se posiciona como la materia con el mejor promedio general y rendimiento sobresaliente de nuestros alumnos.',
+      colorAcento: 'var(--color-blue)', // #2c4c9c
+      icono: 'matematicas'
+    },
+    {
+      id: 'idiomas',
+      titulo: 'Certificaciones Internacionales',
+      badge: 'Trilingüe: Francés e Inglés',
+      destacado: 'TOEFL Jr. & DELF',
+      descripcion: 'Brindamos una preparación exhaustiva orientada a la acreditación de exámenes con validez internacional: TOEFL Junior para inglés y certificaciones DELF para francés, avalando un dominio real de idiomas.',
+      colorAcento: 'var(--color-red)', // #e52720
+      icono: 'idiomas'
+    },
+    {
+      id: 'comipems',
+      titulo: 'Efectividad en COMIPEMS',
+      badge: 'Ingreso a Nivel Medio Superior',
+      porcentajeMeta: 90,
+      sufijo: '%',
+      etiquetaContador: 'en su primera opción',
+      descripcion: 'El 90% de nuestros egresados obtienen su primera opción en el examen de asignación COMIPEMS (UNAM, IPN y preparatorias oficiales de alta demanda), gracias a nuestro programa de asesoría y simuladores continuos.',
+      colorAcento: 'var(--color-blue)', // #2c4c9c
+      icono: 'comipems'
+    }
+  ]
 };

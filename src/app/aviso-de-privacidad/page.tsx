@@ -27,7 +27,7 @@ export default function AvisoDePrivacidad() {
         </p>
         <ul style={{ listStyleType: 'disc', paddingLeft: '2rem', color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: '1.8' }}>
           <li>Vía Telefónica: <a href={`tel:${CONTACT.telefonoTel}`} style={{ color: 'var(--color-blue)', textDecoration: 'underline' }}>{CONTACT.telefonoMostrar}</a></li>
-          <li>Vía WhatsApp: <a href={`https://wa.me/${CONTACT.whatsappNumero}`} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-blue)', textDecoration: 'underline' }}>Mensaje Directo</a></li>
+          <li>Vía WhatsApp: <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-blue)', textDecoration: 'underline' }}>Mensaje Directo</a></li>
           <li>Atención presencial en nuestras instalaciones en los horarios establecidos.</li>
         </ul>
 

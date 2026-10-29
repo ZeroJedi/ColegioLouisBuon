@@ -42,9 +42,10 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
   }, [images.length]);
 
   // Cambio automático de fotos cada 3.5 segundos
-  // Se detiene completamente si está abierto el visor a pantalla completa o si el usuario pasa el mouse por encima
+  // Se detiene completamente si está abierto el visor, si el usuario pasa el mouse, o si prefiere movimiento reducido (WCAG)
   useEffect(() => {
-    if (images.length <= 1 || isLightboxOpen || isHovered) {
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (images.length <= 1 || isLightboxOpen || isHovered || prefersReducedMotion) {
       return;
     }
 
@@ -110,7 +111,17 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
     <>
       <div 
         className="carousel-container" 
+        role="region"
+        aria-roledescription="carrusel"
+        aria-label="Galería interactiva de las instalaciones del colegio. Presiona Enter para ampliar en pantalla completa."
+        tabIndex={0}
         onClick={openLightbox}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openLightbox();
+          }
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onTouchStart={onTouchStart}
@@ -225,6 +236,9 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
       {isLightboxOpen && (
         <div 
           className="lightbox" 
+          role="dialog"
+          aria-modal="true"
+          aria-label="Visor ampliado de fotografía"
           onClick={() => setIsLightboxOpen(false)}
           style={{ 
             position: 'fixed', 

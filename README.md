@@ -50,7 +50,9 @@ frontend/
 │   │   └── page.tsx                      # 🏠 Página de Inicio (Hero, Bienvenida, Galería)
 │   │
 │   ├── components/                       # Componentes reutilizables de interfaz
+│   │   ├── ContactForm.tsx               # 📬 Formulario de contacto directo (WhatsApp y Correo oficial)
 │   │   ├── CursorEffect.tsx              # Estela interactiva del cursor del ratón
+│   │   ├── Distinctions.tsx              # ⭐ Sección destacada: "Lo que nos distingue" (Tarjetas UX + Contador COMIPEMS)
 │   │   ├── Footer.tsx                    # Pie de página (datos, enlaces, mapa embebido)
 │   │   ├── Gallery.tsx                   # Lector automático de fotos para la galería
 │   │   ├── GalleryCarousel.tsx           # Carrusel interactivo y visor ampliado (Lightbox 4:3)
@@ -189,6 +191,18 @@ Abre el archivo `src/data/content.ts` y edita el valor que necesites. Los datos 
 | `HOME.bienvenidaCta` | `'Conoce nuestra historia'` | **Portada → botón de la sección de bienvenida** |
 | `HOME.galeriaTitulo` | `'Nuestras Instalaciones'` | **Portada → título de la sección de galería** |
 | `HOME.galeriaSubtitulo` | `'Descubre los espacios...'` | **Portada → subtítulo de la galería** |
+
+#### Grupo `DISTINCTIONS` — Sección "Lo que nos distingue" (Diferenciadores Académicos)
+
+| Variable / Elemento | Ejemplo de Valor | Dónde aparece en el sitio |
+| :--- | :--- | :--- |
+| `DISTINCTIONS.titulo` | `'Lo que nos distingue'` | **Portada → Título de la sección de tarjetas** |
+| `DISTINCTIONS.subtitulo` | `'Compromiso, rigor académico...'` | **Portada → Subtítulo explicativo** |
+| `DISTINCTIONS.kicker` | `'Pilares de Excelencia'` | **Portada → Etiqueta superior roja destacada** |
+| `DISTINCTIONS.tarjetas[0]` | *Matemáticas (Alto Nivel)* | **Tarjeta 1:** Título, badge, texto destacado (#1 en promedio) y descripción |
+| `DISTINCTIONS.tarjetas[1]` | *Idiomas (TOEFL Jr. & DELF)* | **Tarjeta 2:** Título, badge, texto destacado de certificaciones y descripción |
+| `DISTINCTIONS.tarjetas[2]` | *COMIPEMS (Contador 90%)* | **Tarjeta 3:** Título, badge, porcentaje meta (`90%`), etiqueta y descripción |
+
 
 ### Textos que NO están en `content.ts` (solo en su propia página)
 

@@ -31,7 +31,11 @@ export default function Header() {
           <span className="logo-text">Colegio Louis Buon Langlais</span>
         </Link>
 
-        <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
+        <nav 
+          id="main-navigation" 
+          className={`nav ${isMenuOpen ? 'open' : ''}`}
+          aria-label="Navegación principal"
+        >
           <Link 
             href="/" 
             className={`nav-link ${isHomeActive ? 'nav-link-active' : ''}`} 
@@ -40,13 +44,24 @@ export default function Header() {
             Inicio
           </Link>
 
+          <Link 
+            href="/#lo-que-nos-distingue" 
+            className="nav-link" 
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Lo que nos distingue
+          </Link>
+
           <div className="nav-dropdown">
-            <span 
+            <button 
+              type="button"
               className={`nav-link ${isAboutActive ? 'nav-link-active' : ''}`} 
-              style={{ cursor: 'pointer' }}
+              aria-haspopup="true"
+              aria-expanded="false"
+              style={{ background: 'none', border: 'none', font: 'inherit', cursor: 'pointer' }}
             >
               Quiénes Somos ▾
-            </span>
+            </button>
             <div className="dropdown-content">
               <Link 
                 href="/quienes-somos" 
@@ -81,15 +96,24 @@ export default function Header() {
           </Link>
           
           <button 
+            type="button"
             onClick={() => { toggleTheme(); setIsMenuOpen(false); }} 
             className="theme-toggle" 
-            aria-label="Toggle Theme"
+            aria-label={theme === 'light' ? 'Activar modo oscuro' : 'Activar modo claro'}
+            title={theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'}
           >
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
         </nav>
         
-        <button className="mobile-menu-btn" aria-label="Open Menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button 
+          type="button"
+          className="mobile-menu-btn" 
+          aria-label={isMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+          aria-expanded={isMenuOpen}
+          aria-controls="main-navigation"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
           ☰
         </button>
       </div>
