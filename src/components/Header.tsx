@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 export default function Header() {
-  const { theme, toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -98,22 +98,24 @@ export default function Header() {
             type="button"
             onClick={() => { toggleTheme(); setIsMenuOpen(false); }} 
             className="theme-toggle" 
-            aria-label={theme === 'light' ? 'Activar modo oscuro' : 'Activar modo claro'}
-            title={theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'}
+            aria-label="Cambiar tema claro / oscuro"
+            title="Cambiar tema claro / oscuro"
           >
-            {theme === 'light' ? '🌙' : '☀️'}
+            <span className="theme-icon-moon" aria-hidden="true">🌙</span>
+            <span className="theme-icon-sun" aria-hidden="true">☀️</span>
           </button>
         </nav>
         
         <button 
+          id="mobile-menu-btn"
           type="button"
           className="mobile-menu-btn" 
           aria-label={isMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
           aria-expanded={isMenuOpen}
           aria-controls="main-navigation"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={() => setIsMenuOpen(prev => !prev)}
         >
-          ☰
+          {isMenuOpen ? '✕' : '☰'}
         </button>
       </div>
     </header>

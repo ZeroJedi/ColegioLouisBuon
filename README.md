@@ -218,7 +218,7 @@ Estos textos son únicos de cada página y no se repiten en ningún otro lugar, 
 
 ## 🔗 4.1 Vista Previa al Compartir el Enlace (WhatsApp, Facebook, Twitter, iMessage)
 
-Cuando envías el enlace web `https://colegiolouisbuonlanglais.edu.mx` por WhatsApp o redes sociales, las plataformas generan automáticamente una tarjeta interactiva con:
+Cuando envías el enlace web `https://colegiolouisbuonlanglais.com.mx` por WhatsApp o redes sociales, las plataformas generan automáticamente una tarjeta interactiva con:
 - **Imagen del logotipo:** Toma la imagen `public/og-image.png` (1200x630px) y `public/logo-share.png` (600x600px). Ambas imágenes tienen fondo blanco sólido y pesan menos de 40 KB, cumpliendo con la restricción de WhatsApp (máximo 300 KB) para que nunca se descarte la imagen ni se vea un cuadro negro en modo oscuro.
 - **Título de la tarjeta:** Definido centralizadamente en `SCHOOL.nombre` (`src/data/content.ts`).
 - **Descripción de la tarjeta:** Definida en `SCHOOL.slogan` (`src/data/content.ts`).

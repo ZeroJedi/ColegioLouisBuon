@@ -17,8 +17,23 @@
   --btn-primary-text: var(--color-white);
 }
 
+/* ─── Detección Nativa de Modo Oscuro del Sistema (0 ms, sin JS, instantáneo) ─── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --text-primary: var(--color-white);
+    --text-secondary: #cccccc;
+    --border-color: #333333;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --header-bg: rgba(18, 18, 18, 0.95);
+    --btn-primary-bg: var(--color-red);
+    --btn-primary-text: var(--color-white);
+  }
+}
+
+/* ─── Modo Oscuro Forzado Manualmente ─── */
 [data-theme="dark"] {
-  /* Theme Variables - Dark Mode */
   --bg-primary: #121212;
   --bg-secondary: #1e1e1e;
   --text-primary: var(--color-white);
@@ -28,6 +43,81 @@
   --header-bg: rgba(18, 18, 18, 0.95);
   --btn-primary-bg: var(--color-red);
   --btn-primary-text: var(--color-white);
+}
+
+/* ─── Modo Claro Forzado Manualmente ─── */
+[data-theme="light"] {
+  --bg-primary: var(--color-white);
+  --bg-secondary: #f4f4f5;
+  --text-primary: var(--color-black);
+  --text-secondary: #333333;
+  --border-color: #dddddd;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --btn-primary-bg: var(--color-blue);
+  --btn-primary-text: var(--color-white);
+}
+
+/* ─── Sincronización Automática con Modo Oscuro del Sistema (prefers-color-scheme) ─── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :focus-visible {
+    outline: 3px solid #5c84e8;
+    outline-offset: 3px;
+  }
+
+  :root:not([data-theme="light"]) .nav-link.active,
+  :root:not([data-theme="light"]) .nav-link-active {
+    color: #ff5e59 !important;
+    background: rgba(229, 39, 32, 0.22);
+    border: 1px solid rgba(229, 39, 32, 0.65);
+    box-shadow: 0 0 20px rgba(229, 39, 32, 0.6), 
+                inset 0 0 10px rgba(229, 39, 32, 0.25);
+  }
+
+  :root:not([data-theme="light"]) .section-title {
+    color: var(--color-red);
+  }
+
+  :root:not([data-theme="light"]) .content-block-heading {
+    color: #5c84e8;
+  }
+
+  :root:not([data-theme="light"]) .value-item h3 {
+    color: var(--color-red);
+  }
+
+  :root:not([data-theme="light"]) .distinction-card {
+    background-color: var(--bg-secondary);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
+  }
+
+  :root:not([data-theme="light"]) .distinction-card:hover,
+  :root:not([data-theme="light"]) .distinction-card:focus-visible {
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+    border-color: var(--color-blue);
+  }
+
+  :root:not([data-theme="light"]) .highlight-tag {
+    color: #5c84e8;
+  }
+
+  :root:not([data-theme="light"]) .counter-val {
+    color: #5c84e8;
+  }
+
+  :root:not([data-theme="light"]) .contact-channel-card {
+    background-color: var(--bg-secondary);
+    border-color: #333333;
+  }
+
+  :root:not([data-theme="light"]) .contact-location-box {
+    background-color: var(--bg-secondary);
+    border-color: #333333;
+  }
+
+  :root:not([data-theme="light"]) .contact-location-title {
+    color: #5c84e8;
+  }
 }
 
 * {
@@ -250,18 +340,52 @@ ul {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  line-height: 1;
   color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
   border-radius: 50%;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  touch-action: manipulation;
 }
 
 .theme-toggle:hover {
   background-color: var(--bg-secondary);
+  transform: scale(1.08);
+}
+
+/* Control visual instantáneo de iconos Luna / Sol (cero hydration mismatch) */
+.theme-icon-moon {
+  display: inline-block;
+}
+.theme-icon-sun {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon-moon {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .theme-icon-sun {
+    display: inline-block;
+  }
+}
+
+[data-theme="dark"] .theme-icon-moon {
+  display: none !important;
+}
+[data-theme="dark"] .theme-icon-sun {
+  display: inline-block !important;
+}
+
+[data-theme="light"] .theme-icon-moon {
+  display: inline-block !important;
+}
+[data-theme="light"] .theme-icon-sun {
+  display: none !important;
 }
 
 /* Hero Section */
@@ -639,9 +763,16 @@ ul {
   display: none;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
+  line-height: 1;
   color: var(--text-primary);
   cursor: pointer;
+  padding: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 @media (max-width: 768px) {
@@ -658,9 +789,26 @@ ul {
     background: var(--header-bg);
     padding: 2rem;
     border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    gap: 1rem;
+    animation: mobileNavFade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  @keyframes mobileNavFade {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .mobile-menu-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

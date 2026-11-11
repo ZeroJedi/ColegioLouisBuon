@@ -24,7 +24,7 @@ export const SCHOOL = {
   /** Eslogan del Hero con nivel educativo. Aparece en: page.tsx (Hero) */
   sloganHero: 'Nivel Secundaria con educación integral, personalizada y trilingüe para los líderes del mañana.',
   /** URL pública del sitio. Aparece en: layout.tsx (JSON-LD SEO) */
-  urlSitio: 'https://colegiolouisbuonlanglais.edu.mx',
+  urlSitio: 'https://colegiolouisbuonlanglais.com.mx',
   /** Ruta del logo oficial optimizado (WebP con transparencia, 149x200px, ~17KB) */
   logo: '/logocolegio.webp',
   /** Imagen para compartir en redes sociales (1200x630 px) */
@@ -66,7 +66,7 @@ export const CONTACT_PAGE = {
 // ─── Ubicación ────────────────────────────────────────────────────────────────
 export const MAPS = {
   /** Calle y colonia. Aparece en: Footer, contacto/page.tsx, aviso-de-privacidad, layout.tsx (JSON-LD) */
-  streetAddress: 'Calle 11 Número 87, Col. Olivar del Conde, Olivar del Conde 1ra Secc',
+  streetAddress: 'Calle 11 Número 87, Col. Olivar del Conde 1ra Secc',
   /** Delegación / Alcaldía. Aparece en: layout.tsx (JSON-LD) */
   alcaldia: 'Álvaro Obregón',
   /** Ciudad. Aparece en: layout.tsx (JSON-LD) */
@@ -74,9 +74,9 @@ export const MAPS = {
   /** Código Postal. Aparece en: layout.tsx (JSON-LD) */
   cp: '01400',
   /** Dirección completa en una línea. Aparece en: contacto/page.tsx, aviso-de-privacidad */
-  direccionCompleta: 'Calle 11 Número 87, Col. Olivar del Conde, Olivar del Conde 1ra Secc, Álvaro Obregón, 01400 Ciudad de México, CDMX',
+  direccionCompleta: 'Calle 11 Número 87, Col. Olivar del Conde 1ra Secc, Álvaro Obregón, 01400 Ciudad de México, CDMX',
   /** Dirección en dos líneas (para el Footer). Aparece en: Footer */
-  direccionLinea1: 'Calle 11 Num. 87, Col. Olivar del Conde, Olivar del Conde 1ra Secc,',
+  direccionLinea1: 'Calle 11 Num. 87, Col. Olivar del Conde 1ra Secc,',
   direccionLinea2: 'Álvaro Obregón, 01400 Ciudad de México, CDMX',
   /** Enlace corto de Google Maps. Aparece en: Footer, contacto/page.tsx, layout.tsx (JSON-LD) */
   googleMapsUrl: 'https://maps.app.goo.gl/hFdndL1WdZ5VWjcD7',
@@ -136,12 +136,12 @@ export const DISTINCTIONS = {
     },
     {
       id: 'comipems',
-      titulo: 'Efectividad en COMIPEMS',
+      titulo: 'Efectividad en ECOEMS',
       badge: 'Ingreso a Nivel Medio Superior',
       porcentajeMeta: 90,
       sufijo: '%',
       etiquetaContador: 'en su primera opción',
-      descripcion: 'El 90% de nuestros egresados obtienen su primera opción en el examen de asignación COMIPEMS (UNAM, IPN y preparatorias oficiales de alta demanda), gracias a nuestro programa de asesoría y simuladores continuos.',
+      descripcion: 'El 90% de nuestros egresados obtienen su primera opción en el examen de asignación ECOEMS (UNAM, IPN y preparatorias oficiales de alta demanda), gracias a nuestro programa de asesoría y simuladores continuos.',
       colorAcento: 'var(--color-blue)', // #2c4c9c
       icono: 'comipems'
     }
