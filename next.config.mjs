@@ -1,9 +1,8 @@
-import type { NextConfig } from "next";
-
 // Generate all IPs for the 192.168.2.X/24 subnet
 const localSubnetOrigins = Array.from({ length: 254 }, (_, i) => `192.168.2.${i + 1}`);
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
@@ -18,3 +17,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
